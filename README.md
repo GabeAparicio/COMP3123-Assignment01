@@ -62,5 +62,10 @@ The file "Assigment01 API Collection.postmancollection.json" is included in this
 ```bash
 docker start comp3095-mongodb
 ```
+### Sample User for Testing Login:
+```bash
+Email: skittle@example.com
+Password: password123 
+```
 
 ### ENJOY!
