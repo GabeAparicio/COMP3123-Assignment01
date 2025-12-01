@@ -23,10 +23,6 @@ const employeeSchema = new mongoose.Schema({
     position: {
         type: String,
         required: true,
-        enum: {
-            values: ['Software Engineer', 'Designer', 'Product Manager', 'HR Manager', 'Department Clown'],
-            message: '{VALUE} is not a valid position. Please choose from the pre-determined positions'
-        },
         trim: true
     },
     salary: {
@@ -54,14 +50,18 @@ const employeeSchema = new mongoose.Schema({
     updated_at: {
         type: Date,
         default: Date.now
+    },
+    profile_image: {
+        type: String,
+        default: ""
     }
 });
 
-// 3. Hook to auto-update the updated_at field before saving
+
 employeeSchema.pre('save', function(next) {
     this.updated_at = Date.now();
     next();
 });
 
-// 4. Export the Employee model
+
 module.exports = mongoose.model('Employee', employeeSchema);

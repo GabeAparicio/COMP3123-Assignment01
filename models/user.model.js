@@ -1,7 +1,6 @@
-// 1. Import mongoose
 const mongoose = require('mongoose');
 
-// 2. Define the structure of a User document
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -31,11 +30,9 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// 3. Optional: A hook to update "updated_at" whenever a user is modified
 userSchema.pre('save', function(next) {
     this.updated_at = Date.now();
     next();
 });
 
-// 4. Export a model called "User" that uses the "userSchema"
 module.exports = mongoose.model('User', userSchema);

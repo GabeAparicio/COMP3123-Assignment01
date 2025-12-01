@@ -1,8 +1,9 @@
-// 1. Import express
+// Import express
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/upload');
 
-// 2. Import controller functions (we’ll create these next)
+
 const {
     getAllEmployees,
     createEmployee,
@@ -11,21 +12,20 @@ const {
     deleteEmployee
 } = require('../controllers/employee.controller');
 
-// 3. Define routes
 // GET all employees
 router.get('/employees', getAllEmployees);
 
 // POST create a new employee
-router.post('/employees', createEmployee);
+router.post('/employees', upload.single("profile_image"), createEmployee);
 
 // GET employee by ID
 router.get('/employees/:eid', getEmployeeById);
 
 // PUT update employee by ID
-router.put('/employees/:eid', updateEmployee);
-//
+router.put('/employees/:eid', upload.single("profile_image"), updateEmployee);
+
 // // DELETE employee by ID (passed as query param)
 router.delete('/employees', deleteEmployee);
 
-// 4. Export router
+
 module.exports = router;
